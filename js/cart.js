@@ -1,10 +1,10 @@
 /* global Cart */
 'use strict';
 
-const trHeadElement = document.querySelector('#cart thead tr');
+const trHeadElement = document.querySelector('thead tr');
 const th4Element = document.createElement('th');
 trHeadElement.appendChild(th4Element);
-th4Element.textContent = 'Images'
+th4Element.textContent = 'Images';
 
 // Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
 const table = document.getElementById('cart');
@@ -25,39 +25,39 @@ function renderCart() {
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
-  const elements = document.querySelector('#cart tbody');
+  const elements = document.querySelector('tbody');
   while(elements.firstChild){
-    elements.removeChild(elements.firstChild)
+    elements.removeChild(elements.firstChild);
   }
 
 }
-console.log(cart)
+console.log(cart);
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
   // TODO: Find the table body
-  const bodyElement = document.querySelector('#cart tbody');
+  const bodyElement = document.querySelector('tbody');
   // TODO: Iterate over the items in the cart
   for (let i in cart.items ){
-     // TODO: Create a TR
+    // TODO: Create a TR
     const trElement = document.createElement('tr');
-      // TODO: Create a TD for the delete link, quantity,  and the item
+    // TODO: Create a TD for the delete link, quantity,  and the item
     const td1Element = document.createElement('td');
     td1Element.textContent = ' X ';
-    td1Element.setAttribute('id', i )
+    td1Element.setAttribute('id', i );
     const td2Element = document.createElement('td');
     td2Element.textContent = cart.items[i].quantity;
     const td3Element = document.createElement('td');
     td3Element.textContent = cart.items[i].product.name;
     let td4Element = document.createElement('td');
     const imgItem = document.createElement('img');
-    imgItem.src =  cart.items[i].product.filePath;
+    imgItem.src = cart.items[i].product.filePath;
     td4Element.appendChild(imgItem);
     trElement.appendChild(td1Element);
     trElement.appendChild(td2Element);
     trElement.appendChild(td3Element);
     trElement.appendChild(td4Element);
-      // TODO: Add the TR to the TBODY and each of the TD's to the TR
-      bodyElement.appendChild(trElement);
+    // TODO: Add the TR to the TBODY and each of the TD's to the TR
+    bodyElement.appendChild(trElement);
   }
 
 
@@ -66,15 +66,15 @@ function showCart() {
 
 function removeItemFromCart(event) {
   const check = event.target;
-  console.log(event)
+  console.log(event);
   if ( check.nodeName === 'TD' && check.id){
     // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
-  cart.removeItem(check.id);
+    cart.removeItem(check.id);
     // TODO: Save the cart back to local storage
-  cart.saveToLocalStorage();
+    cart.saveToLocalStorage();
     // TODO: Re-draw the cart table
-  renderCart()
-}
+    renderCart();
+  }
 
 
 
