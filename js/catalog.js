@@ -12,7 +12,10 @@ function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
   const selectElement = document.getElementById('items');
   for (let i in Product.allProducts) {
-
+    const optionEl = document.createElement('option');
+    optionEl.setAttribute('value', i);
+    optionEl.textContent = Product.allProducts[i].name;
+    selectElement.appendChild(optionEl);
   }
 
 }
@@ -23,7 +26,7 @@ function populateForm() {
 function handleSubmit(event) {
 
   // TODO: Prevent the page from reloading
-
+  event.preventDefault();
   // Do all the things ...
   addSelectedItemToCart();
   cart.saveToLocalStorage();
@@ -35,17 +38,42 @@ function handleSubmit(event) {
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
+  let item = event.target.items.value;
+  
   // TODO: get the quantity
+  let quantity = event.target.quantity.value;
+
   // TODO: using those, add one item to the Cart
+  let product = Product.allProducts[item];
+  cart.addItem(product, quantity);
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+function updateCounter() {
+  const itemCountEl = document.getElementById('itemCount');
+  let count = cart.items.length;
+  if(count){
+    itemCountEl.textContent = ` (${count})`;
+  }
+}
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
   // TODO: Get the item and quantity from the form
+  let item = event.target.items.value;
+  let product = Product.allProducts[item];
+  let quantity = event.target.quantity.value;
+
   // TODO: Add a new element to the cartContents div with that information
+  const cartContentsEl = document.getElementById('cartContents');
+  const divEl = document.createElement('div');
+  const leftEl = document.createElement('p');
+  const rightEl = document.createElement('p');
+  cartContentsEl.appendChild(divEl);
+  divEl.appendChild(leftEl);
+  divEl.appendChild(rightEl);
+  leftEl.textContent = `Product: ${product.name}`;
+  rightEl.textContent = `Quantity: ${quantity}`;
 }
 
 // Set up the "submit" event listener on the form.
