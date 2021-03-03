@@ -169,6 +169,11 @@ label span {
   box-shadow: 0 3px 2px #777;
 }
 
+.card#cartContents div {
+  display: flex;
+  justify-content: space-between;
+}
+
 
 /* Styles for the table on the cart page */
 
