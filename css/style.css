@@ -170,8 +170,39 @@ label span {
 }
 
 .card#cartContents div {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+}
+
+.card#cartContents div p{
+  display: inline;
+}
+
+.card#cartContents div p:last-child {
+  position: absolute;
+  left: 35%;
+  transform: translateX(-50%);
+  animation-name: goRigth;
+  animation-duration: 5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes goRigth {
+  from {
+    left: 35%;
+  }
+  to {
+    left: 80%;
+  }
+}
+
+@keyframes goLeft {
+  from {
+    left: 35%;
+  }
+  to {
+    left: 80%;
+  }
 }
 
 
