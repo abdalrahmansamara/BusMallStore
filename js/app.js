@@ -8,6 +8,14 @@ const Cart = function(items) {
 
 Cart.prototype.addItem = function(product, quantity) {
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  const localPrevious = JSON.parse(localStorage.getItem('cart')) || [];
+  if(this.items.length === 0){
+    for (let j = 0 ; j < localPrevious.length ; j++ ) {
+      const olditems = new CartItem(localPrevious[j].product.name,localPrevious[j].quantity);
+      olditems.product = localPrevious[j].product;
+      this.items.push(olditems);
+    }
+  }
   const newItem = new CartItem(product,quantity);
   this.items.push(newItem);
 };

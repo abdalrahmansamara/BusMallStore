@@ -31,7 +31,6 @@ function clearCart() {
   }
 
 }
-console.log(cart);
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
   // TODO: Find the table body
